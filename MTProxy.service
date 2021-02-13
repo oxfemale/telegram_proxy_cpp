@@ -1,0 +1,12 @@
+[Unit]
+Description=MTProxy
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/MTProxy
+ExecStart=/opt/MTProxy/mtproto-proxy -D localhost -u nobody -p 8888 -H 55000 -S <crc16> --http-stat --force-dh --nat-info 10.0.0.1:8.8.8.8 --address 10.0.0.1 /opt/MTProxy/proxy-multi.conf --allow-skip-dh
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
